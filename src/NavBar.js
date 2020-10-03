@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NavBar = (props) => {
     return(
@@ -14,10 +15,12 @@ const NavBar = (props) => {
                 {
                     // loop through links
                     props.links.map(
-                        (linkName) => 
+                        (entry) => 
                             // for every link, generate an 'li'
                             <li className="nav-item active">
-                                <a className="nav-link" href="#">{linkName}</a>
+                                <Link className="nav-link" to={entry.path}>
+                                    {entry.label}
+                                </Link>
                             </li>
                     )
                 }

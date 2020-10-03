@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+
+input[type=password].error,
+input[type=text].error {
+    border: solid 1px red;
+}
+
+input[type=checkbox].error {
+    outline: solid 1px red;
+}
+
+.error-message{
+    display: block;
+    background: red;
+    padding: 1em;
+    margin: 1em 0;
+    color: white;
+}
+
+.preloader {
+  text-align: center;
+  color: green;
+}

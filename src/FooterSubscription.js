@@ -1,10 +1,10 @@
 import React from 'react';
 
-const FooterSubscription = () => {
+const FooterSubscription = (props) => {
     return (
         <div className="container text-right text-light">
             <p>Get the latest news from Nokia delivered straight to your inbox.</p>
-            <button className="btn btn-secondary">Subscribe</button>
+            {props.children}
         </div>
     )
 }

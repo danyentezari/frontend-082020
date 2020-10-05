@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NavBar from './NavBar';
+import { validEmail, validPassword } from './utils';
 
 const RegistrationScreen = () => {
 
@@ -45,10 +46,10 @@ const RegistrationScreen = () => {
         if(lastNameField.value.length === 0) {
             errorMessages.push("Please enter your last name!");
         }
-        if(emailField.value.length === 0) {
+        if(!validEmail(emailField.value)) {
             errorMessages.push("Please enter your email!");
         }
-        if(passwordField.value.length === 0) {
+        if(!validPassword(passwordField.value)) {
             errorMessages.push("Please enter a password!");
         }
 
@@ -85,7 +86,7 @@ const RegistrationScreen = () => {
             // fetch function
             fetch('http://localhost:3001/users/register',{
                 method: 'POST',
-                // headers: {"Content-Type": "multipart/form-data"},
+                //headers: {"Content-Type": "multipart/form-data"},
                 body: formData
             })
             // Convert the JSON string to an object
@@ -102,6 +103,7 @@ const RegistrationScreen = () => {
                     setState(
                         {
                             ...state,
+                            errors: [],
                             preloader: false,
                             success: true
                         }
@@ -180,7 +182,7 @@ const RegistrationScreen = () => {
                 }
 
                 <label>Enter your firstname *</label>
-                <input ref={(comp)=> firstNameField = comp} className="field form-control" name="firstName" 
+                <input ref={(comp)=>firstNameField = comp} className="field form-control" name="firstName" 
                 type="text" />
 
                 <label>Enter your lastname *</label>
@@ -222,7 +224,7 @@ const RegistrationScreen = () => {
                         fontSize: "16px"
                     }
                 }>
-                    Register your Interest
+                    Register
                 </button>
             </div>
 

@@ -2,13 +2,8 @@ import React, { useState, useContext } from 'react';
 import AppContext from './AppContext';
 import { Link } from 'react-router-dom';
 import './App.css';
-import NavBar from './NavBar';
 import Jumbotron from './Jumbotron';
 import Card from './Card';  
-import IconButton from './IconButton';
-import Engagement from './Engagement';
-import SocialMediaLinks from './SocialMediaLinks';
-import FooterSubscription from './FooterSubscription';
 import EmailSubscribeForm from './EmailSubscribeForm';
 
 const MainScreen = () => {
@@ -17,51 +12,10 @@ const MainScreen = () => {
 
   const [state, setState] = useState();
 
-  const logoutUser = () => {
-    setGlobalState(
-      {
-        ...globalState,
-        loggedIn: false
-      }
-    )
-  }
-
   return (
-    <div className="App">    
+    <div className="screen">  
 
-      <NavBar 
-        brand="MyApp" 
-        links={[
-          {
-            label: 'Home',
-            path: '/'
-          },
-          {
-            label: 'About',
-            path: '/about'
-          },
-          {
-            label: 'Contact',
-            path: '/contact'
-          }
-        ]}
-      >
-
-
-        { 
-          !globalState.loggedIn && 
-          <Link to="/login" className="btn btn-secondary">Login</Link>
-        }
-
-        { 
-          globalState.loggedIn && 
-          <>
-            <Link to="/profile" className="btn btn-secondary">Profile</Link>
-            <button onClick={logoutUser} className="btn btn-secondary">Log out</button>
-          </>
-        }
-      </NavBar>
-
+      <center>  
       <Jumbotron 
         title="Newsletter" 
         lead="Sign up to get the latest updates"
@@ -70,6 +24,7 @@ const MainScreen = () => {
       >
         <EmailSubscribeForm btnLabel="Subscribe"/>
       </Jumbotron>
+      </center>
       
       {
         !globalState.loggedIn &&
@@ -90,46 +45,6 @@ const MainScreen = () => {
         </div>
       }
 
-
-      <br/><br/>
-      <Engagement>
-        <SocialMediaLinks>
-          <IconButton icon="fa-facebook"/>
-          <IconButton icon="fa-linkedin"/>
-          <IconButton icon="fa-instagram"/>
-          <IconButton icon="fa-youtube"/>
-        </SocialMediaLinks>
-
-        <FooterSubscription>
-          <EmailSubscribeForm btnLabel="Subscribe"/>
-        </FooterSubscription>
-
-        
-      </Engagement>
-
-      <NavBar 
-        brand="MyApp" 
-        links={
-          [
-            {
-              label: 'Home',
-              path: '/'
-            },
-            {
-              label: 'About',
-              path: '/about'
-            },
-            {
-              label: 'Contact',
-              path: '/contact'
-            },
-            {
-              label: 'FAQs',
-              path: '/faqs'
-            }
-          ]
-        }
-      />
     </div>
   );
 }

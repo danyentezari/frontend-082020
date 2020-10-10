@@ -59,3 +59,7 @@ input[type=checkbox].error {
   text-align: center;
   color: green;
 }
+
+.screen {
+  min-height: calc(100vh - 226px);
+}

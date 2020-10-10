@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AppContext from './AppContext';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch, Link } from 'react-router-dom';
+import LayoutRoute from './LayoutRoute';
 import MainScreen from './MainScreen'; 
 import AboutScreen from './AboutScreen';
 import ContactScreen from './ContactScreen';
@@ -15,7 +16,7 @@ const PrivateRoute = (props) => {
     // If user logged in, let them through
     if(globalState.loggedIn) {
         return(
-            <Route path={props.path} exact={props.exact} component={props.component}/>
+            <LayoutRoute path={props.path} exact={props.exact} component={props.component}/>
         )
 
     // Otherwise, send them to /login    
@@ -24,7 +25,6 @@ const PrivateRoute = (props) => {
             <Redirect to="/login" />
         )
     }
-
 }
 
 
@@ -53,11 +53,11 @@ const App = () => {
         <AppContext.Provider value={[globalState, setGlobalState]}>
             <BrowserRouter>
                 <Switch>
-                    <Route path="/" exact={true} component={MainScreen} />
-                    <Route path="/about" exact={true} component={AboutScreen} />
-                    <Route path="/contact" exact={true} component={ContactScreen} />
-                    <Route path="/registration" exact={true} component={RegistrationScreen} />
-                    <Route path="/login" exact={true} component={LoginScreen} /> 
+                    <LayoutRoute path="/" exact={true} component={MainScreen} />
+                    <LayoutRoute path="/about" exact={true} component={AboutScreen} />
+                    <LayoutRoute path="/contact" exact={true} component={ContactScreen} />
+                    <LayoutRoute path="/registration" exact={true} component={RegistrationScreen} />
+                    <LayoutRoute path="/login" exact={true} component={LoginScreen} /> 
                     <PrivateRoute path="/profile" exact={true} component={ProfileScreen} /> 
                 </Switch>
             </BrowserRouter>

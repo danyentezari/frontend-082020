@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import AppContext from './AppContext';
 import { Link } from 'react-router-dom';
 import './App.css';
 import NavBar from './NavBar';
@@ -11,13 +12,19 @@ import FooterSubscription from './FooterSubscription';
 import EmailSubscribeForm from './EmailSubscribeForm';
 
 const MainScreen = () => {
-  
-  const [state, setState] = useState(
-    {
-      loggedIn: true,
-      userName: 'Jon'
-    }
-  );
+
+  const [globalState, setGlobalState] = useContext(AppContext);
+
+  const [state, setState] = useState();
+
+  const logoutUser = () => {
+    setGlobalState(
+      {
+        ...globalState,
+        loggedIn: false
+      }
+    )
+  }
 
   return (
     <div className="App">    
@@ -39,7 +46,20 @@ const MainScreen = () => {
           }
         ]}
       >
-        <Link to="/registration" className="btn btn-secondary">Register</Link>
+
+
+        { 
+          !globalState.loggedIn && 
+          <Link to="/login" className="btn btn-secondary">Login</Link>
+        }
+
+        { 
+          globalState.loggedIn && 
+          <>
+            <Link to="/profile" className="btn btn-secondary">Profile</Link>
+            <button onClick={logoutUser} className="btn btn-secondary">Log out</button>
+          </>
+        }
       </NavBar>
 
       <Jumbotron 
@@ -50,11 +70,9 @@ const MainScreen = () => {
       >
         <EmailSubscribeForm btnLabel="Subscribe"/>
       </Jumbotron>
-
       
-
       {
-        !state.loggedIn &&
+        !globalState.loggedIn &&
         <div className="container">
         <p>You need to be logged in</p>
         </div>
@@ -62,7 +80,7 @@ const MainScreen = () => {
 
       
       {
-        state.loggedIn &&
+        globalState.loggedIn &&
         <div className="container" 
         style={{"display": "flex", "justify-content": "space-between"}}>
 

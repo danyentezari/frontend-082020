@@ -6,6 +6,9 @@ const ProfileScreen = () => {
     const [ state, setState ] = useState(
         {
             profileLoaded: false,
+            errors: [],
+            success: false,
+            preloader: false
         }
     )
 
@@ -35,7 +38,8 @@ const ProfileScreen = () => {
                             firstName: profile[0].firstName,
                             lastName: profile[0].lastName,
                             email: profile[0].email,
-                            phone: profile[0].phone
+                            phone: profile[0].phone,
+                            photoURL: profile[0].photoURL
                         }
                     )
                 })
@@ -58,6 +62,14 @@ const ProfileScreen = () => {
                         }
                     }>
                 <h1>Profile Settings</h1>
+
+                <img src={state.photoURL} style={
+                    {
+                        width: '160px',
+                        display: 'block',
+                        margin: '0 auto',
+                    }
+                } />
 
                 <br/>
                 <label>Enter your firstname *</label>

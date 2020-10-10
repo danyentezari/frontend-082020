@@ -5,7 +5,7 @@ const ProfileScreen = () => {
 
     const [ state, setState ] = useState(
         {
-            profileLoaded: false
+            profileLoaded: false,
         }
     )
 
@@ -31,7 +31,7 @@ const ProfileScreen = () => {
                     setState(
                         {
                             ...state,
-                            profileLoaded: true
+                            profileLoaded: true,
                         }
                     )
                     console.log('profile', profile)
@@ -46,7 +46,54 @@ const ProfileScreen = () => {
 
     return (
         <div className="screen">
-            <h1>Profile Settings</h1>
+
+            <div className="container" 
+                    style={
+                        {
+                            marginTop: "5em", 
+                            maxWidth: "40em"
+                        }
+                    }>
+                <h1>Profile Settings</h1>
+
+                <br/>
+                <label>Enter your firstname *</label>
+                <input type="text" className="field form-control" />
+
+                <label>Enter your lastname *</label>
+                <input type="text" className="field form-control" />
+
+                <label>Enter your email *</label>
+                <input type="text" className="field form-control" />
+
+                <label>Enter your password *</label>
+                <input type="password" className="field form-control" />
+
+                <label>Enter your phone (optional)</label>
+                <input type="text" className="field form-control" />
+
+                <br/><br/>
+
+                <label>Upload your profile picture</label>
+                <input
+                className="field form-control" id="photo" 
+                name="file" type="file" multiple="multiple"
+                />
+
+                <br/><br/>
+
+                <button 
+                className="btn btn-primary"
+                style={
+                    {
+                        padding: "10px", 
+                        fontSize: "16px"
+                    }
+                }>
+                    Update
+                </button>
+            </div>
+
         </div>
     )
 }

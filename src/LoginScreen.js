@@ -70,16 +70,29 @@ const LoginScreen = () => {
                 (response)=> {
                     // Save the token in the browser
                     const token = response.token;
-                    setGlobalState(
-                        {
-                            ...globalState,
-                            loggedIn: true,
-                            user: {
-                                ...globalState.user,
-                                token: token
-                            },
-                        }
-                    )
+
+                    // If backend rejects login attempt
+                    if(!response.token) {
+                        setState(
+                            {
+                                ...state,
+                                errors: [ response.msg ]
+                            }
+                        )
+                    } 
+                    // Set globalState for loggedIn to trye
+                    else {
+                        setGlobalState(
+                            {
+                                ...globalState,
+                                loggedIn: true,
+                                user: {
+                                    ...globalState.user,
+                                    token: token
+                                },
+                            }
+                        )
+                    }
                 }
             )
             .catch(

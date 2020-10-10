@@ -108,27 +108,7 @@ const LoginScreen = () => {
     // Otherwise, show user the login form
     else {
         return (
-            <div>
-                <NavBar 
-                    brand="MyApp"
-                    links={
-                        [
-                            {
-                                label: 'Home',
-                                path: '/'
-                            },
-                            {
-                                label: 'About',
-                                path: '/about'
-                            },
-                            {
-                                label: 'Contact',
-                                path: '/contact'
-                            }
-                        ]
-                        }
-                />
-
+            <div className="screen">
                 <div className="container" 
                     style={
                         {

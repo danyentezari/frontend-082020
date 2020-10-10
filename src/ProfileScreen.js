@@ -32,9 +32,12 @@ const ProfileScreen = () => {
                         {
                             ...state,
                             profileLoaded: true,
+                            firstName: profile[0].firstName,
+                            lastName: profile[0].lastName,
+                            email: profile[0].email,
+                            phone: profile[0].phone
                         }
                     )
-                    console.log('profile', profile)
                 })
                 .catch(
                     (e) => console.log('e', e)
@@ -58,19 +61,19 @@ const ProfileScreen = () => {
 
                 <br/>
                 <label>Enter your firstname *</label>
-                <input type="text" className="field form-control" />
+                <input type="text" className="field form-control" value={state.firstName}/>
 
                 <label>Enter your lastname *</label>
-                <input type="text" className="field form-control" />
+                <input type="text" className="field form-control" value={state.lastName}/>
 
                 <label>Enter your email *</label>
-                <input type="text" className="field form-control" />
+                <input type="text" className="field form-control" value={state.email}/>
 
                 <label>Enter your password *</label>
                 <input type="password" className="field form-control" />
 
                 <label>Enter your phone (optional)</label>
-                <input type="text" className="field form-control" />
+                <input type="text" className="field form-control" value={state.phone}/>
 
                 <br/><br/>
 

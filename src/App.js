@@ -32,7 +32,9 @@ const App = () => {
 
     const [ globalState, setGlobalState ] = useState(
         {
-            user: {},
+            user: {
+                token: localStorage.getItem('token') && localStorage.getItem('token'),
+            },
             loggedIn: localStorage.getItem('token') ? true : false,
             color: 'red'
         }
